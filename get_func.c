@@ -1,7 +1,10 @@
 #include "monty.h"
 /**
- * @brief 
- * 
+ * _get_op_func - choose the correct function for action
+ * @stack: the head of the linked list
+ * @line_number: the number of the line in the file
+ * @token: tokens parses
+ * Return: None
  */
 void (*get_op_func(char *token))(stack_t **, unsigned int line_number)
 {
@@ -18,7 +21,7 @@ void (*get_op_func(char *token))(stack_t **, unsigned int line_number)
 	};
 	int i = 0;
 
-	while(op[i].opcode)
+	while (op[i].opcode)
 	{
 		i++;
 		printf("%stokengetopfunc\n", token);

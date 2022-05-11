@@ -1,7 +1,9 @@
 #include "monty.h"
 /**
- * @brief 
- * 
+ * _sub - subs the top two elements of the stack
+ * @stack: the head of the linked list
+ * @line_number: the number of the line in the file
+ * Return: None
  */
 void _sub(stack_t **stack, unsigned int line_number)
 {

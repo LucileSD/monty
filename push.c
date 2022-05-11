@@ -1,7 +1,9 @@
 #include "monty.h"
 /**
- * @brief 
- * 
+ * _push - add a node at the beginning
+ * @stack: the head of the linked list
+ * @line_number: the number of the line in the file
+ * Return: None
  */
 void _push(stack_t **stack, unsigned int line_number)
 {

@@ -1,7 +1,9 @@
 #include "monty.h"
 /**
- * @brief 
- * 
+ * main - first call of the program
+ * @argc: argument counter
+ * @argv: argument value
+ * Return: success
  */
 int main(int argc, char **argv)
 {
@@ -20,7 +22,7 @@ int main(int argc, char **argv)
 	fd = fopen(argv[1], "r");
 	if (fd == NULL)
 	{
-		fprintf(stderr,"Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	stack = malloc(sizeof(stack_t));
@@ -29,14 +31,14 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
-	while (fgets(str , size, fd) != NULL)
+	while (fgets(str, size, fd) != NULL)
 	{
 		line_number++;
 		token = _strtok(str, " ");
 		stack->n = token[1];
 		get_op_func(token)(&stack, line_number);
 	}
-	free (stack);
-	fclose (fd);
+	free(stack);
+	fclose(fd);
 	return (EXIT_SUCCESS);
 }
