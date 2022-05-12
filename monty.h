@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <ctype.h>
 
+extern int error;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -38,19 +39,18 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-void (*get_op_func(char *token))(stack_t **, unsigned int line_number);
-void _push(stack_t **stack, unsigned int line_number);
+void get_op_func(char *token, stack_t **stack, unsigned int line_number);
+void _push(char *token, stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 int is_in_str(char c, const char *str);
-char *_strtok(char *str, const char *delim);
-char *_strpbrk(char *s, const char *accept);
 void _nop(stack_t **stack, unsigned int line_number);
 void _sub(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
+void free_all(stack_t *stack, FILE *fd);
 #endif

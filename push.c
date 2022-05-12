@@ -5,31 +5,41 @@
  * @line_number: the number of the line in the file
  * Return: None
  */
-void _push(stack_t **stack, unsigned int line_number)
+void _push(char *token, stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = *stack;
+	int i;
 
-	if (*stack && isdigit((*stack)->n) > 0)
+	if (token == NULL)
 	{
-		new = malloc(sizeof(stack_t));
-		if (!new)
-		{
-			perror("Error: malloc failed\n");
-			exit(EXIT_FAILURE);
-		}
-		new->n = (*stack)->n;
-		while (*stack)
-		{
-			line_number++;
-			new = (*stack)->prev;
-		}
-		new->prev = NULL;
-		new->next = (*stack)->prev;
-		*stack = new;
-	}
-	else
-	{
-		fprintf(stderr, "L%d: usage: push integer", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+	for (i = 0; token[i]; i++)
+	{
+		if (token[i] == '-')
+			i++;
+		if (isdigit(token[i]) == 0)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
+	}
+	
+	new = malloc(sizeof(stack_t));
+	if (!new)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new->n = atoi(token);
+	new->prev = NULL;
+	new->next = NULL;
+
+	if (*stack)
+	{
+		(*stack)->prev = new;
+		new->next = *stack;
+	}
+	*stack = new;
 }

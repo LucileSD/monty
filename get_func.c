@@ -6,10 +6,9 @@
  * @token: tokens parses
  * Return: None
  */
-void (*get_op_func(char *token))(stack_t **, unsigned int line_number)
+void get_op_func(char *token, stack_t **stack, unsigned int line_number)
 {
 	instruction_t op[] = {
-			{"push", _push},
 			{"pall", _pall},
 			{"pint", _pint},
 			{"pop", _pop},
@@ -26,9 +25,14 @@ void (*get_op_func(char *token))(stack_t **, unsigned int line_number)
 
 	while (op[i].opcode)
 	{
+		if (strcmp(token, op[i].opcode) == 0)
+		{
+			op[i].f(stack, line_number);
+			return;
+		}
 		i++;
-		printf("%stokengetopfunc\n", token);
 	}
-	return (op[i].f);
-
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
+	error = 1;
+	exit(EXIT_FAILURE);
 }

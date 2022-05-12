@@ -14,11 +14,13 @@ void _sub(stack_t **stack, unsigned int line_number)
 	{
 		tmp = tmp->next;
 		result = tmp->n - (*stack)->n;
-		printf("%d", result);
+		tmp->n = result;
+		_pop(stack, line_number);
 	}
 	else
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		error = 1;
+		return;
 	}
 }
