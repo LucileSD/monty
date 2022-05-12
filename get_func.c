@@ -19,23 +19,28 @@ void get_op_func(char *token, stack_t **stack, unsigned int line_number)
 			{"div", _div},
 			{"mul", _mul},
 			{"mod", _mod},
-			{"#", _comment},
 			{"pchar", _pchar},
 			{"pstr", _pstr},
 			{NULL, NULL}
 	};
 	int i = 0;
 
-	while (op[i].opcode)
+	if (token[0] == '#')
+		_nop(stack, line_number);
+	else
 	{
-		if (strcmp(token, op[i].opcode) == 0)
+		while (op[i].opcode)
 		{
-			op[i].f(stack, line_number);
-			return;
+			if (strcmp(token, op[i].opcode) == 0)
+			{
+				op[i].f(stack, line_number);
+				return;
+			}
+			i++;
 		}
-		i++;
+	
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
+		error = 1;
+		exit(EXIT_FAILURE);
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
-	error = 1;
-	exit(EXIT_FAILURE);
 }
