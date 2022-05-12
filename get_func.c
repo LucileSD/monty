@@ -20,6 +20,7 @@ void get_op_func(char *token, stack_t **stack, unsigned int line_number)
 			{"mul", _mul},
 			{"mod", _mod},
 			{"#", _comment},
+			{"pchar", _pchar},
 			{NULL, NULL}
 	};
 	int i = 0;
