@@ -13,6 +13,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 	{
 		tmp = tmp->next;
 		free(*stack);
+		tmp->prev = NULL;
 		*stack = tmp;
 	}
 	else
