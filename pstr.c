@@ -12,7 +12,9 @@ void _pstr(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (!*stack)
-		putchar('\n');
+	{
+		;
+	}
 	while (tmp && tmp->n > 0 && tmp->n < 127)
 	{
 		putchar(tmp->n);
