@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * _get_op_func - choose the correct function for action
+ * get_op_func - choose the correct function for action
  * @stack: the head of the linked list
  * @line_number: the number of the line in the file
  * @token: tokens parses

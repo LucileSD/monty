@@ -3,6 +3,7 @@
  * _push - add a node at the beginning
  * @stack: the head of the linked list
  * @line_number: the number of the line in the file
+ * @token: the token of strtok
  * Return: None
  */
 void _push(char *token, stack_t **stack, unsigned int line_number)
@@ -25,7 +26,7 @@ void _push(char *token, stack_t **stack, unsigned int line_number)
 			exit(EXIT_FAILURE);
 		}
 	}
-	
+
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
