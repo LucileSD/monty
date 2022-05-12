@@ -21,6 +21,7 @@ void get_op_func(char *token, stack_t **stack, unsigned int line_number)
 			{"mod", _mod},
 			{"#", _comment},
 			{"pchar", _pchar},
+			{"pstr", _pstr},
 			{NULL, NULL}
 	};
 	int i = 0;
