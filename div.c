@@ -7,10 +7,7 @@
  */
 void _div(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = *stack;
-	int result = 0;
-
-	if ((*stack)->next)
+	if (*stack && (*stack)->next)
 	{
 		if ((*stack)->n == 0)
 		{
@@ -20,12 +17,8 @@ void _div(stack_t **stack, unsigned int line_number)
 		}
 		else
 		{
-			tmp = tmp->prev;
-			result = tmp->n / (*stack)->n;
-			tmp->n = result;
-			free(*stack);
-			tmp->prev = NULL;
-			*stack = tmp;
+			(*stack)->next->n = (*stack)->next->n / (*stack)->n;
+			_pop(stack, line_number);
 		}
 	}
 	else
