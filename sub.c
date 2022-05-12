@@ -10,7 +10,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 	stack_t *tmp = *stack;
 	int result = 0;
 
-	if ((*stack)->next)
+	if (*stack && (*stack)->next)
 	{
 		tmp = tmp->next;
 		result = tmp->n - (*stack)->n;
