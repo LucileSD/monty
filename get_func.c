@@ -40,7 +40,7 @@ void get_op_func(char *token, stack_t **stack, unsigned int line_number)
 			}
 			i++;
 		}
-	
+
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
 		error = 1;
 		exit(EXIT_FAILURE);
